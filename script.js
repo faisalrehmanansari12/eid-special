@@ -13,27 +13,7 @@ const observer = new IntersectionObserver(
   }
 );
 
-revealElements.forEach(element => observer.observe(element));
-
-const navToggle = document.getElementById("navToggle");
-const navLinks = document.getElementById("navLinks");
-
-if (navToggle && navLinks) {
-  navToggle.addEventListener("click", () => {
-    const isOpen = navLinks.classList.toggle("open");
-    navToggle.classList.toggle("open", isOpen);
-    navToggle.setAttribute("aria-expanded", String(isOpen));
-  });
-}
-
-const currentPage = window.location.pathname.split("/").pop() || "index.html";
-document.querySelectorAll(".nav-links a").forEach(link => {
-  const href = link.getAttribute("href");
-
-  if (href === currentPage) {
-    link.classList.add("active");
-  }
-});
+revealElements.forEach(el => observer.observe(el));
 
 const heartsContainer = document.querySelector(".floating-hearts");
 
@@ -41,7 +21,7 @@ function createHeart() {
   if (!heartsContainer) return;
 
   const heart = document.createElement("span");
-  heart.textContent = Math.random() > 0.5 ? "♡" : "❤";
+  heart.innerHTML = Math.random() > 0.5 ? "♡" : "❤";
   heart.style.left = Math.random() * 100 + "vw";
   heart.style.animationDuration = 6 + Math.random() * 6 + "s";
   heart.style.fontSize = 14 + Math.random() * 24 + "px";
@@ -62,8 +42,8 @@ const hiddenMessage = document.getElementById("hiddenMessage");
 if (loveButton && hiddenMessage) {
   loveButton.addEventListener("click", () => {
     hiddenMessage.classList.add("show");
-    loveButton.textContent = "Patch Applied ❤️";
     launchConfetti();
+    loveButton.textContent = "Patch Applied ❤️";
   });
 }
 
@@ -77,7 +57,7 @@ function launchConfetti() {
     piece.style.left = Math.random() * 100 + "vw";
     piece.style.animationDuration = 2 + Math.random() * 2.5 + "s";
     piece.style.fontSize = 14 + Math.random() * 22 + "px";
-    piece.style.color = Math.random() > 0.5 ? "#ffd37a" : "#ff79b0";
+    piece.style.color = Math.random() > 0.5 ? "#ffd37a" : "#ff7ab6";
 
     document.body.appendChild(piece);
 
